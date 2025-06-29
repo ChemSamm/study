@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>투두리스트</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>투두리스트</h1>
+            <div class="view-toggle">
+                <button class="toggle-btn active" data-view="list">리스트 보기</button>
+                <button class="toggle-btn" data-view="weekly">주간 보기</button>
+                <button class="toggle-btn" data-view="calendar">달력 보기</button>
+            </div>
+        </header>
+
+        <main>
+            <!-- 할 일 추가 폼 -->
+            <div class="add-todo-section">
+                <form id="todoForm" class="todo-form">
+                    <div class="input-group">
+                        <input type="text" id="todoInput" placeholder="할 일을 입력하세요..." required>
+                        <div class="date-inputs">
+                            <div class="date-field">
+                                <label for="startDate">시작일</label>
+                                <input type="date" id="startDate" required>
+                            </div>
+                            <div class="date-field">
+                                <label for="endDate">종료일</label>
+                                <input type="date" id="endDate" required>
+                            </div>
+                        </div>
+                        <button type="submit" class="add-btn">추가</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- 필터 옵션 -->
+            <div class="filter-section">
+                <div class="filter-options">
+                    <label class="filter-checkbox">
+                        <input type="checkbox" id="hidePastTasks" checked>
+                        <span class="checkmark"></span>
+                        지나간 일정 숨기기
+                    </label>
+                    <label class="filter-checkbox">
+                        <input type="checkbox" id="showCompleted">
+                        <span class="checkmark"></span>
+                        완료된 일정 보기
+                    </label>
+                </div>
+                <div class="month-filter">
+                    <label for="monthFilter">월별 필터:</label>
+                    <select id="monthFilter">
+                        <option value="all">전체</option>
+                        <option value="current">이번 달</option>
+                        <option value="next">다음 달</option>
+                        <option value="custom">직접 선택</option>
+                    </select>
+                    <input type="month" id="customMonth" style="display: none;">
+                </div>
+            </div>
+
+            <!-- 리스트 뷰 -->
+            <div id="listView" class="view active">
+                <div class="todo-list" id="todoList">
+                    <!-- 할 일들이 여기에 동적으로 추가됩니다 -->
+                </div>
+            </div>
+
+            <!-- 주간 뷰 -->
+            <div id="weeklyView" class="view">
+                <div class="weekly-header">
+                    <button id="prevWeek" class="nav-btn">&lt;</button>
+                    <h2 id="currentWeek">2024년 1월 1주차</h2>
+                    <button id="nextWeek" class="nav-btn">&gt;</button>
+                </div>
+                <div class="weekly-calendar">
+                    <div class="weekly-weekdays">
+                        <div>일</div>
+                        <div>월</div>
+                        <div>화</div>
+                        <div>수</div>
+                        <div>목</div>
+                        <div>금</div>
+                        <div>토</div>
+                    </div>
+                    <div class="weekly-days" id="weeklyDays">
+                        <!-- 주간 날짜들이 여기에 동적으로 추가됩니다 -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- 달력 뷰 -->
+            <div id="calendarView" class="view">
+                <div class="calendar-header">
+                    <button id="prevMonth" class="nav-btn">&lt;</button>
+                    <h2 id="currentMonth">2024년 1월</h2>
+                    <button id="nextMonth" class="nav-btn">&gt;</button>
+                </div>
+                <div class="calendar">
+                    <div class="calendar-weekdays">
+                        <div>일</div>
+                        <div>월</div>
+                        <div>화</div>
+                        <div>수</div>
+                        <div>목</div>
+                        <div>금</div>
+                        <div>토</div>
+                    </div>
+                    <div class="calendar-days" id="calendarDays">
+                        <!-- 달력 날짜들이 여기에 동적으로 추가됩니다 -->
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- 할 일 수정 모달 -->
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>할 일 수정</h3>
+            <form id="editForm">
+                <input type="text" id="editInput" placeholder="할 일을 입력하세요..." required>
+                <div class="date-inputs">
+                    <div class="date-field">
+                        <label for="editStartDate">시작일</label>
+                        <input type="date" id="editStartDate" required>
+                    </div>
+                    <div class="date-field">
+                        <label for="editEndDate">종료일</label>
+                        <input type="date" id="editEndDate" required>
+                    </div>
+                </div>
+                <div class="modal-buttons">
+                    <button type="submit" class="save-btn">저장</button>
+                    <button type="button" class="cancel-btn">취소</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 
